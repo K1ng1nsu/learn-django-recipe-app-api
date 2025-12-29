@@ -10,9 +10,16 @@ COPY ./requirements.dev.txt .
 
 ARG DEV=false
 RUN pip install --upgrade pip && \
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
     pip install --no-cache-dir -r requirements.txt && \
     if [ $DEV = "true" ] ; \
         then pip install --no-cache-dir -r requirements.dev.txt ; \
-    fi 
+    fi && \
+    apk del .tmp-build-deps
+
+
+
 
 COPY ./app /app
