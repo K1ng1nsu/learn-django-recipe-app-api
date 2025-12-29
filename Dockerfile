@@ -11,7 +11,7 @@ COPY ./requirements.dev.txt .
 ARG DEV=false
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
-    if [ $DEV = "true"]; \
+    if [ $DEV = "true" ] ; \
         then /py/bin/pip install -r requirements.dev.txt ; \
     fi 
 
