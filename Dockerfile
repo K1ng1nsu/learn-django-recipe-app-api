@@ -12,7 +12,7 @@ ARG DEV=false
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     if [ $DEV = "true" ] ; \
-        then /py/bin/pip install -r requirements.dev.txt ; \
+        then pip install --no-cache-dir -r requirements.dev.txt ; \
     fi 
 
 COPY ./app /app
